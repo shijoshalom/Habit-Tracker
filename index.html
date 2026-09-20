@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#111827">
+  <meta name="description" content="Personal habit tracker with daily logs and monthly progress.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <title>Habit Tracker</title>
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">PERSONAL HABIT TRACKER</p>
+        <h1>My habits</h1>
+      </div>
+      <button id="installBtn" class="secondary hidden" type="button">Install</button>
+    </header>
+
+    <section class="card today-card">
+      <div class="date-row">
+        <button id="prevDay" class="icon-btn" type="button" aria-label="Previous day">‹</button>
+        <div class="date-center">
+          <strong id="selectedDateLabel"></strong>
+          <span id="todayHint"></span>
+        </div>
+        <button id="nextDay" class="icon-btn" type="button" aria-label="Next day">›</button>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-meta"><span>Daily progress</span><strong id="dailyPercent">0%</strong></div>
+        <div class="progress"><div id="dailyBar"></div></div>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="stat card"><span>Completed</span><strong id="completedCount">0</strong></div>
+      <div class="stat card"><span>Total habits</span><strong id="habitCount">0</strong></div>
+      <div class="stat card"><span>Streak</span><strong id="streakCount">0</strong></div>
+    </section>
+
+    <section class="section-head">
+      <div><h2>Today's habits</h2><p>Tap a habit when you complete it.</p></div>
+      <button id="addHabitBtn" class="primary" type="button">+ Add habit</button>
+    </section>
+    <section id="habitList" class="habit-list"></section>
+
+    <section class="section-head report-head">
+      <div><h2>Monthly report</h2><p id="monthLabel"></p></div>
+      <div class="month-actions">
+        <button id="prevMonth" class="secondary" type="button">‹</button>
+        <button id="nextMonth" class="secondary" type="button">›</button>
+      </div>
+    </section>
+    <section class="card chart-card">
+      <div class="chart-summary">
+        <div><span>Monthly completion</span><strong id="monthPercent">0%</strong></div>
+        <div><span>Best day</span><strong id="bestDay">—</strong></div>
+      </div>
+      <div id="chart" class="chart" aria-label="Monthly habit completion bar chart"></div>
+      <div class="legend"><span><i></i>Completion %</span></div>
+    </section>
+
+    <section class="section-head">
+      <div><h2>Habits</h2><p>Manage your habit list.</p></div>
+    </section>
+    <section id="manageList" class="card manage-list"></section>
+
+    <footer>Data is stored locally in this browser. No account or server required.</footer>
+  </main>
+
+  <dialog id="habitDialog">
+    <form method="dialog" id="habitForm">
+      <h2 id="dialogTitle">Add habit</h2>
+      <label>Habit name
+        <input id="habitName" maxlength="60" required placeholder="e.g. Study 8 hours">
+      </label>
+      <div class="dialog-actions">
+        <button class="secondary" value="cancel" type="button" id="cancelDialog">Cancel</button>
+        <button class="primary" value="default" type="submit">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
